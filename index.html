@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Snake Game</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>CLASSIC SNAKE GAME</h1>
+        <button id="start_button">Start New Game</button>
+        <h3 id="score"></h3> 
+        <canvas id="snake_board" width="500" height="500"></canvas>
+        <script type="module">
+            import Game from "./game.js";
+            var game;
+            const button = document.getElementById("start_button");
+            button.addEventListener("click", (event) => {
+                if(game != null) {
+                    //stop running game before starting a new one
+                    game.stopGame();
+                }
+                game = new Game();
+                // register events
+                document.addEventListener('keydown', (event) => game.updateDirection(event));
+                // start game
+                game.startGame();
+            });
+        </script>
+    </body>
+</html>
